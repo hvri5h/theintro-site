@@ -62,8 +62,8 @@ export default function Home() {
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-lg leading-8 text-muted sm:text-xl">
             Melbourne is full of people worth knowing. The Intro is how you
-            meet them. No swiping, no cringe networking. Just real
-            conversations, in real life, over coffee.
+            meet them. We pair you 1-on-1 with curious, thoughtful people,
+            for real conversations, in real life, over coffee.
           </p>
 
           <div className="mt-12 flex justify-center">
