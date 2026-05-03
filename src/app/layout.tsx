@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +12,66 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
+const SITE_URL = "https://theintro-site.vercel.app";
+const TITLE = "The Intro — Meet interesting people over coffee";
+const DESCRIPTION =
+  "A members-only offline social network. The Intro pairs you one-on-one with curious, thoughtful people in your city — for real conversations, in real life, over coffee.";
+
 export const metadata: Metadata = {
-  title: "The Intro — 1:1 coffee with someone interesting",
-  description:
-    "The Intro pairs you 1:1 with one curious, thoughtful person each week for a 45-minute coffee. No swiping, no networking, just real conversation.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s · The Intro",
+  },
+  description: DESCRIPTION,
+  applicationName: "The Intro",
+  keywords: [
+    "The Intro",
+    "coffee meetups",
+    "offline social network",
+    "meet new people",
+    "one on one introductions",
+    "Cranbourne East",
+    "Melbourne",
+    "tech and creative community",
+  ],
+  authors: [{ name: "The Intro" }],
+  creator: "The Intro",
+  publisher: "The Intro",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "The Intro",
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "social",
 };
 
 export default function RootLayout({
@@ -26,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
