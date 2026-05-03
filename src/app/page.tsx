@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CupScatter } from "./cup-scatter";
 
 const avatars = ["p1-v6", "p2-v6", "p3-v6", "p4-v8", "p5-v6", "p6-v6"];
 
@@ -6,17 +7,17 @@ const steps = [
   {
     n: "01",
     title: "Tell us about you",
-    body: "A thoughtful profile that helps us understand who you'd find interesting to meet.",
+    body: "A quick profile so we know who you'd find interesting.",
   },
   {
     n: "02",
-    title: "We make an introduction",
-    body: "Someone from Melbourne's tech and creative scene you might not have crossed paths with otherwise.",
+    title: "Get a weekly intro",
+    body: "One curious person, sent to your inbox each week.",
   },
   {
     n: "03",
     title: "Meet for coffee",
-    body: "Pick a café you both like. No agenda, no pitches — just a real conversation, in real life.",
+    body: "Reply, pick a café, see what happens.",
   },
 ];
 
@@ -27,38 +28,27 @@ const whoBullets = [
   "The kind of conversation that only happens offline",
 ];
 
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <header className="w-full">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-6 sm:px-10">
-          <a href="#" className="flex items-center gap-2.5 text-foreground">
-            <span
-              aria-hidden
-              className="grid h-7 w-7 place-items-center rounded-full bg-accent text-sm font-bold text-card"
-            >
-              i
-            </span>
-            <span className="text-base font-semibold tracking-tight">
-              The Intro
-            </span>
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-6 py-4 sm:px-10">
+          <a
+            href="#"
+            className="font-display text-2xl font-bold tracking-tight text-foreground"
+          >
+            theintro
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-muted sm:flex">
-            <a href="#how" className="hover:text-foreground">
-              How it works
-            </a>
-            <a href="#who" className="hover:text-foreground">
-              Who it&apos;s for
-            </a>
-          </nav>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 text-center sm:pt-24 sm:pb-32">
-          <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl">
-            Meet interesting people{" "}
-            <span className="italic text-accent">over coffee</span>
+        <section className="relative flex min-h-[calc(100dvh-72px)] items-center">
+          <CupScatter />
+          <div className="relative z-10 mx-auto w-full max-w-3xl px-6 py-12 text-center">
+          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-6xl">
+            Meet interesting people over coffee
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-lg leading-8 text-muted sm:text-xl">
             Melbourne is full of people worth knowing. The Intro is how you
@@ -88,28 +78,29 @@ export default function Home() {
 
           <div className="mt-10 flex justify-center">
             <a
-              href="#join"
+              href="mailto:hello@theintro.app?subject=Join%20the%20waitlist"
               className="inline-flex h-14 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card transition-colors hover:bg-foreground"
             >
-              Join The Intro
+              Join the waitlist
             </a>
+          </div>
           </div>
         </section>
 
-        <section id="how" className="border-t border-border bg-card/60">
-          <div className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-10 sm:py-28">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-accent">
+        <section id="how" className="hidden">
+          <div className="mx-auto w-full max-w-5xl px-6 py-12 text-center sm:px-10 sm:py-16">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
               How it works
             </h2>
-            <p className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-              Three steps. One real conversation.
+            <p className="mx-auto mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+              One real connection per week
             </p>
 
             <ol className="mt-12 grid gap-6 sm:grid-cols-3">
               {steps.map((step) => (
                 <li
                   key={step.n}
-                  className="rounded-2xl border border-border bg-background p-6"
+                  className="rounded-2xl border border-border bg-card p-6"
                 >
                   <div className="font-mono text-xs text-accent">{step.n}</div>
                   <h3 className="mt-3 text-lg font-semibold text-foreground">
@@ -124,24 +115,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="who" className="border-t border-border">
-          <div className="mx-auto grid w-full max-w-5xl gap-12 px-6 py-20 sm:grid-cols-2 sm:px-10 sm:py-28">
-            <div>
-              <h2 className="text-sm font-medium uppercase tracking-widest text-accent">
-                Who it&apos;s for
-              </h2>
-              <p className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-                People who&apos;d rather be curious than impressive.
-              </p>
-              <p className="mt-6 text-base leading-7 text-muted">
-                Founders, designers, writers, builders, makers — anyone in tech
-                or creative industries who&apos;d rather have a real
-                conversation than another evening scrolling. Because the real
-                magic happens when two people talk and no one expects anything
-                from each other.
-              </p>
-            </div>
-            <ul className="grid gap-4 self-center text-base text-foreground">
+        <section id="who" className="hidden">
+          <div className="mx-auto w-full max-w-3xl px-6 py-20 text-center sm:px-10 sm:py-28">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              Who it&apos;s for
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+              People who&apos;d rather be curious than impressive.
+            </p>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted">
+              Founders, designers, writers, builders, makers — anyone in tech
+              or creative industries who&apos;d rather have a real conversation
+              than another evening scrolling. Because the real magic happens
+              when two people talk and no one expects anything from each other.
+            </p>
+            <ul className="mx-auto mt-10 grid max-w-2xl gap-4 text-left text-base text-foreground sm:grid-cols-2">
               {whoBullets.map((line) => (
                 <li
                   key={line}
@@ -155,40 +143,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="join"
-          className="border-t border-border bg-foreground text-card"
-        >
-          <div className="mx-auto w-full max-w-3xl px-6 py-20 text-center sm:px-10 sm:py-28">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-              Your first intro is on us.
-            </h2>
-            <div className="mt-10 flex justify-center">
-              <a
-                href="mailto:hello@theintro.app?subject=I%27d%20like%20to%20join%20The%20Intro"
-                className="inline-flex h-14 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card transition-colors hover:bg-card hover:text-foreground"
-              >
-                Join The Intro
-              </a>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-start justify-between gap-3 px-6 py-8 text-sm text-muted sm:flex-row sm:items-center sm:px-10">
-          <p>© {new Date().getFullYear()} The Intro. Made over coffee.</p>
-          <div className="flex items-center gap-6">
-            <a href="#how" className="hover:text-foreground">
-              How it works
-            </a>
-            <a href="#who" className="hover:text-foreground">
-              Who it&apos;s for
-            </a>
-            <a href="#join" className="hover:text-foreground">
-              Join
-            </a>
-          </div>
+      <footer className="hidden border-t border-border">
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-6 py-8 text-sm text-muted sm:px-10">
+          <p>© {new Date().getFullYear()} The Intro.</p>
         </div>
       </footer>
     </div>
