@@ -12,9 +12,6 @@ export default function Home() {
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-muted sm:flex">
-            <a href="#how" className="hover:text-foreground">
-              How it works
-            </a>
             <a href="#who" className="hover:text-foreground">
               Who it&apos;s for
             </a>
@@ -30,10 +27,6 @@ export default function Home() {
 
       <main className="flex-1">
         <section className="mx-auto w-full max-w-5xl px-6 pt-10 pb-24 sm:px-10 sm:pt-20 sm:pb-32">
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            One thoughtful match. Every week.
-          </p>
           <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-6xl sm:leading-[1.05]">
             Coffee with someone{" "}
             <span className="italic text-accent">interesting.</span>
@@ -50,62 +43,6 @@ export default function Home() {
             >
               Get my first intro
             </a>
-            <a
-              href="#how"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-card px-6 text-sm font-medium text-foreground transition-colors hover:border-foreground"
-            >
-              How it works
-            </a>
-          </div>
-          <p className="mt-6 text-xs text-muted">
-            Currently rolling out in Sydney, Melbourne, London &amp; New York.
-          </p>
-        </section>
-
-        <section
-          id="how"
-          className="border-t border-border bg-card/60"
-        >
-          <div className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-10 sm:py-28">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-accent">
-              How it works
-            </h2>
-            <p className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-              Three steps. One real conversation a week.
-            </p>
-
-            <ol className="mt-12 grid gap-6 sm:grid-cols-3">
-              {[
-                {
-                  n: "01",
-                  title: "Tell us about you",
-                  body: "A short, thoughtful intake — what you're into, what you'd love to talk about, who you'd find interesting.",
-                },
-                {
-                  n: "02",
-                  title: "We make the match",
-                  body: "Every Sunday, our team hand-picks one person nearby we think you'll genuinely click with.",
-                },
-                {
-                  n: "03",
-                  title: "Meet for coffee",
-                  body: "You both pick a time and a café. 45 minutes. No agenda. Just a conversation worth showing up for.",
-                },
-              ].map((step) => (
-                <li
-                  key={step.n}
-                  className="rounded-2xl border border-border bg-background p-6"
-                >
-                  <div className="font-mono text-xs text-accent">{step.n}</div>
-                  <h3 className="mt-3 text-lg font-semibold text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {step.body}
-                  </p>
-                </li>
-              ))}
-            </ol>
           </div>
         </section>
 
@@ -185,8 +122,8 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-5xl flex-col items-start justify-between gap-3 px-6 py-8 text-sm text-muted sm:flex-row sm:items-center sm:px-10">
           <p>© {new Date().getFullYear()} The Intro. Made over coffee.</p>
           <div className="flex items-center gap-6">
-            <a href="#how" className="hover:text-foreground">
-              How it works
+            <a href="#who" className="hover:text-foreground">
+              Who it&apos;s for
             </a>
             <a href="#join" className="hover:text-foreground">
               Get an intro
