@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ececea;
-  --foreground: #0d0d0d;
-  --accent: #e94f1d;
-  --muted: #5a5a58;
-  --border: #d6d6d2;
-  --card: #f5f5f3;
+  --background: #f7f1e8;
+  --foreground: #1a1410;
+  --accent: #c2410c;
+  --muted: #6b5b4f;
+  --card: #fffaf3;
+  --border: #e9dcc9;
 }
 
 @theme inline {
@@ -14,16 +14,14 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
-  --color-border: var(--border);
   --color-card: var(--card);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
 }
 
 body {
-  background-color: var(--background);
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
