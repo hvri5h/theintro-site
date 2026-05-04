@@ -1,9 +1,28 @@
+import { readdir, stat } from "node:fs/promises";
+import path from "node:path";
 import Image from "next/image";
 import { CupScatter } from "./cup-scatter";
 import { RotatingText } from "@/components/ui/rotating-text";
 import intros from "@/data/intros.json";
 
-const avatars = ["p1-v6", "p2-v6", "p3-v6", "p4-v8", "p5-v6", "p6-v6"];
+const AVATAR_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
+
+async function getAvatars() {
+  const dir = path.join(process.cwd(), "public", "avatars");
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = entries
+    .filter(
+      (entry) => entry.isFile() && AVATAR_EXTENSIONS.has(path.extname(entry.name).toLowerCase()),
+    )
+    .map((entry) => entry.name)
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
+  return Promise.all(
+    files.map(async (name) => {
+      const { mtimeMs } = await stat(path.join(dir, name));
+      return { name, version: Math.floor(mtimeMs) };
+    }),
+  );
+}
 
 const steps = [
   {
@@ -30,7 +49,9 @@ const whoBullets = [
   "The kind of conversation that only happens offline",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const avatars = await getAvatars();
+
   return (
     <div className="flex flex-1 flex-col">
       <header className="w-full">
@@ -45,10 +66,32 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="relative flex min-h-[calc(100dvh-72px)] items-center">
+        <section className="relative flex min-h-[calc(100dvh-72px)] items-start">
           <CupScatter />
-          <div className="relative z-10 mx-auto w-full max-w-3xl px-6 py-12 text-center">
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground sm:text-6xl">
+          <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pt-[10vh] pb-12 text-center sm:pt-[14vh]">
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-3 rounded-full border border-border bg-card/60 py-1.5 pr-4 pl-1.5 shadow-sm backdrop-blur-sm">
+                <ul className="flex -space-x-2">
+                  {avatars.map(({ name, version }) => (
+                    <li key={name} className="overflow-hidden rounded-full ring-[1.5px] ring-card">
+                      <Image
+                        src={`/avatars/${name}?v=${version}`}
+                        alt=""
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 object-cover"
+                        priority
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <span className="text-xs font-medium tracking-wide text-muted">
+                  50 spots available
+                </span>
+              </div>
+            </div>
+
+            <h1 className="mt-10 text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground sm:text-6xl">
               Meet your next{" "}
               <RotatingText
                 text={intros.words}
@@ -62,27 +105,10 @@ export default function Home() {
               creative scene.
             </p>
 
-            <div className="mt-12 flex justify-center">
-              <ul className="flex -space-x-3">
-                {avatars.map((p) => (
-                  <li key={p} className="overflow-hidden rounded-full ring-2 ring-background">
-                    <Image
-                      src={`/avatars/${p}.jpg`}
-                      alt=""
-                      width={56}
-                      height={56}
-                      className="h-14 w-14 object-cover"
-                      priority
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             <div className="mt-10 flex justify-center">
               <a
                 href="https://tally.so/r/1AGG8L"
-                className="inline-flex h-14 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card transition-colors hover:bg-foreground"
+                className="inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md"
               >
                 Apply for the May cohort
               </a>
