@@ -1,12 +1,29 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --background: #f7f1e8;
-  --foreground: #1a1410;
-  --accent: #c2410c;
-  --muted: #6b5b4f;
+  --foreground: #2F1903;
+  --accent: #C65536;
+  --muted: #6E5B4D;
   --card: #fffaf3;
   --border: #e9dcc9;
+  --card-foreground: #2F1903;
+  --popover: #fffaf3;
+  --popover-foreground: #2F1903;
+  --primary: #2F1903;
+  --primary-foreground: #fffaf3;
+  --secondary: #e9dcc9;
+  --secondary-foreground: #2F1903;
+  --muted-foreground: #6E5B4D;
+  --accent-foreground: #fffaf3;
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: #e9dcc9;
+  --ring: #6E5B4D;
+  --radius: 0.625rem;
 }
 
 @theme inline {
@@ -16,17 +33,47 @@
   --color-muted: var(--muted);
   --color-card: var(--card);
   --color-border: var(--border);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-sans);
   --font-display: var(--font-figtree);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }

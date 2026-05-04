@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Figtree, Geist_Mono, Inter } from "next/font/google";
+import { Figtree, Geist_Mono, Inter, Geist } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -81,7 +84,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${figtree.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", inter.variable, figtree.variable, geistMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
       <GoogleAnalytics gaId="G-SD3VX9MZXQ" />
