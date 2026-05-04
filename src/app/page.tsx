@@ -81,10 +81,10 @@ export default function Home() {
 
             <div className="mt-10 flex justify-center">
               <a
-                href="mailto:hello@theintro.app?subject=Join%20the%20waitlist"
+                href="https://tally.so/r/1AGG8L"
                 className="inline-flex h-14 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card transition-colors hover:bg-foreground"
               >
-                Join the waitlist
+                Apply for the May cohort
               </a>
             </div>
           </div>
