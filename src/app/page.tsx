@@ -98,7 +98,7 @@ export default async function Home() {
               />
             </h1>
             <p className="mx-auto mt-8 max-w-xl text-lg leading-8 text-muted sm:text-xl">
-              One curated coffee intro a week with someone worth knowing in Melbourne’s tech and
+              One curated coffee intro a week to someone worth knowing in Melbourne’s tech and
               creative scene.
             </p>
 

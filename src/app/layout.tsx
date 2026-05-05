@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Figtree, Geist_Mono, Inter, Geist } from "next/font/google";
+import { Figtree, Geist_Mono, Geist } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -25,7 +23,7 @@ const geistMono = Geist_Mono({
 const SITE_URL = "https://theintro-site.vercel.app";
 const TITLE = "The Intro — Meet interesting people over coffee";
 const DESCRIPTION =
-  "One curated coffee intro a week with someone worth knowing in Melbourne's tech and creative scene.";
+  "One curated coffee intro a week to someone worth knowing in Melbourne's tech and creative scene.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -87,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", inter.variable, figtree.variable, geistMono.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", geist.variable, figtree.variable, geistMono.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col">{children}</body>
       <GoogleAnalytics gaId="G-SD3VX9MZXQ" />
