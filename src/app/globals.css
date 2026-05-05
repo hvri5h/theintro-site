@@ -5,24 +5,33 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f7f1e8;
-  --foreground: #2F1903;
-  --accent: #C65536;
-  --muted: #6E5B4D;
-  --card: #fffaf3;
-  --border: #e9dcc9;
-  --card-foreground: #2F1903;
+  /* Brand tokens — Figma design system */
+  --cream: #F4EFE6;
+  --surface: #EAE3D5;
+  --ink: #2A1F1A;
+  --ink-muted: #6B5C4F;
+  --hairline: #C9BBA8;
+  --terracotta: #B85C3F;
+
+  /* Semantic tokens */
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: #fffaf3; /* warm off-white — elevated surface, sits above --cream */
+  --card-foreground: var(--ink);
   --popover: #fffaf3;
-  --popover-foreground: #2F1903;
-  --primary: #2F1903;
-  --primary-foreground: #fffaf3;
-  --secondary: #e9dcc9;
-  --secondary-foreground: #2F1903;
-  --muted-foreground: #6E5B4D;
-  --accent-foreground: #fffaf3;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--hairline);
+  --secondary-foreground: var(--ink);
+  --muted: var(--ink-muted);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--terracotta);
+  --accent-foreground: #ffffff; /* pure white — max legibility on terracotta */
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--ink-muted);
   --destructive: oklch(0.577 0.245 27.325);
-  --input: #e9dcc9;
-  --ring: #6E5B4D;
   --radius: 0.625rem;
 }
 

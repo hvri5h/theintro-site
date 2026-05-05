@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 const SITE_URL = "https://theintro-site.vercel.app";
 const TITLE = "The Intro — Meet interesting people over coffee";
 const DESCRIPTION =
-  "The Intro pairs you one-on-one with curious, thoughtful people in your city — for real conversations, in real life, over coffee.";
+  "One curated coffee intro a week with someone worth knowing in Melbourne's tech and creative scene.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -39,8 +39,11 @@ export const metadata: Metadata = {
     "The Intro",
     "coffee meetups",
     "meet new people",
+    "co-founder",
+    "mentor",
+    "collaborator",
+    "creative partner",
     "one on one introductions",
-    "Cranbourne East",
     "Melbourne",
     "tech and creative community",
   ],

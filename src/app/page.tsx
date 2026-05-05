@@ -58,9 +58,16 @@ export default async function Home() {
         <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-6 py-4 sm:px-10">
           <a
             href="#"
-            className="font-display text-[27px] font-extrabold tracking-tight text-foreground"
+            aria-label="The Intro — home"
+            className="inline-flex items-center"
           >
-            theintro
+            <Image
+              src="/logo.svg"
+              alt="The Intro"
+              width={141}
+              height={28}
+              priority
+            />
           </a>
         </div>
       </header>
@@ -70,16 +77,16 @@ export default async function Home() {
           <CupScatter />
           <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pt-[10vh] pb-12 text-center sm:pt-[14vh]">
             <div className="flex justify-center">
-              <div className="inline-flex items-center gap-3 rounded-full border border-border bg-card/60 py-1.5 pr-4 pl-1.5 shadow-sm backdrop-blur-sm">
-                <ul className="flex -space-x-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 py-1 pr-3 pl-1 shadow-sm backdrop-blur-sm">
+                <ul className="flex -space-x-1.5">
                   {avatars.map(({ name, version }) => (
                     <li key={name} className="overflow-hidden rounded-full ring-[1.5px] ring-card">
                       <Image
                         src={`/avatars/${name}?v=${version}`}
                         alt=""
-                        width={32}
-                        height={32}
-                        className="h-8 w-8 object-cover"
+                        width={24}
+                        height={24}
+                        className="h-6 w-6 object-cover"
                         priority
                       />
                     </li>
@@ -108,7 +115,7 @@ export default async function Home() {
             <div className="mt-10 flex justify-center">
               <a
                 href="https://tally.so/r/1AGG8L"
-                className="inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-card shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md"
+                className="inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md"
               >
                 Apply for the May cohort
               </a>
