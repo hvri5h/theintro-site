@@ -56,18 +56,8 @@ export default async function Home() {
     <div className="flex flex-1 flex-col">
       <header className="w-full">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-6 py-4 sm:px-10">
-          <a
-            href="#"
-            aria-label="The Intro — home"
-            className="inline-flex items-center"
-          >
-            <Image
-              src="/logo.svg"
-              alt="The Intro"
-              width={141}
-              height={28}
-              priority
-            />
+          <a href="#" aria-label="The Intro — home" className="inline-flex items-center">
+            <Image src="/logo.svg" alt="The Intro" width={141} height={28} priority />
           </a>
         </div>
       </header>
@@ -93,7 +83,7 @@ export default async function Home() {
                   ))}
                 </ul>
                 <span className="text-xs font-medium tracking-wide text-muted">
-                  50 spots available
+                  44/50 spots available
                 </span>
               </div>
             </div>
