@@ -2,8 +2,16 @@ import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import Image from "next/image";
 import { CupScatter } from "./cup-scatter";
+import { Founders } from "./founders";
 import { RotatingText } from "@/components/ui/rotating-text";
+import { Faq } from "@/components/ui/faq";
+import {
+  PiClipboardTextStroke,
+  PiCoffeeCup01Stroke,
+  PiEnvelopeDefaultStroke,
+} from "@/components/icons/pikaicons";
 import intros from "@/data/intros.json";
+import stepsData from "@/data/steps.json";
 
 const AVATAR_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
 
@@ -24,30 +32,16 @@ async function getAvatars() {
   );
 }
 
-const steps = [
-  {
-    n: "01",
-    title: "Tell us about you",
-    body: "A quick profile so we know who you'd find interesting.",
-  },
-  {
-    n: "02",
-    title: "Get a weekly intro",
-    body: "One curious person, sent to your inbox each week.",
-  },
-  {
-    n: "03",
-    title: "Meet for coffee",
-    body: "Reply, pick a café, see what happens.",
-  },
-];
+const STEP_ICONS = {
+  clipboard: PiClipboardTextStroke,
+  envelope: PiEnvelopeDefaultStroke,
+  coffee: PiCoffeeCup01Stroke,
+} as const;
 
-const whoBullets = [
-  "Built for people in tech and creative industries",
-  "No swiping, no pitches, no networking",
-  "Meet at Melbourne's best cafés",
-  "The kind of conversation that only happens offline",
-];
+type StepIconKey = keyof typeof STEP_ICONS;
+
+const CTA_CLASSNAME =
+  "inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md";
 
 export default async function Home() {
   const avatars = await getAvatars();
@@ -83,12 +77,12 @@ export default async function Home() {
                   ))}
                 </ul>
                 <span className="text-xs font-medium tracking-wide text-muted">
-                  44/50 spots available
+                  Next cohort filling fast.
                 </span>
               </div>
             </div>
 
-            <h1 className="mt-10 text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground sm:text-6xl">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-[-0.02em] text-foreground sm:text-6xl">
               Meet your next{" "}
               <RotatingText
                 text={intros.words}
@@ -102,69 +96,107 @@ export default async function Home() {
               creative scene.
             </p>
 
-            <div className="mt-10 flex justify-center">
-              <a
-                href="https://tally.so/r/1AGG8L"
-                className="inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md"
-              >
-                Apply for the May cohort
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
+                Apply now
               </a>
+              <p className="text-sm text-muted">Limited spots available for the May 2026 cohort.</p>
             </div>
           </div>
         </section>
 
-        <section id="how" className="hidden">
-          <div className="mx-auto w-full max-w-5xl px-6 py-12 text-center sm:px-10 sm:py-16">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+        <section id="how" className="flex min-h-screen items-center py-24 sm:py-32">
+          <div className="mx-auto w-full max-w-5xl px-6 sm:px-10">
+            <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               How it works
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-              One real connection per week
-            </p>
-
-            <ol className="mt-12 grid gap-6 sm:grid-cols-3">
-              {steps.map((step) => (
-                <li key={step.n} className="rounded-2xl border border-border bg-card p-6">
-                  <div className="font-mono text-xs text-accent">{step.n}</div>
-                  <h3 className="mt-3 text-lg font-semibold text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">{step.body}</p>
-                </li>
-              ))}
+            <ol className="mt-16 grid gap-12 sm:mt-20 sm:grid-cols-3 sm:gap-10">
+              {stepsData.steps.map((step, i) => {
+                const Icon = STEP_ICONS[step.icon as StepIconKey];
+                return (
+                  <li key={step.title} className="flex flex-col items-center text-center">
+                    <Icon aria-hidden className="h-16 w-16 text-foreground" />
+                    <h3 className="mt-8 text-2xl font-bold text-foreground">
+                      {i + 1}. {step.title}
+                    </h3>
+                    <p className="mt-4 max-w-xs text-base leading-7 text-muted">{step.body}</p>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         </section>
 
-        <section id="who" className="hidden">
-          <div className="mx-auto w-full max-w-3xl px-6 py-20 text-center sm:px-10 sm:py-28">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
-              Who it&apos;s for
+        <section id="why" className="flex min-h-screen items-center py-24 sm:py-32">
+          <div className="mx-auto w-full max-w-3xl px-6 sm:px-10">
+            <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+              Why we made this
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-              People who&apos;d rather be curious than impressive.
-            </p>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted">
-              Founders, designers, writers, builders, makers — anyone in tech or creative industries
-              who&apos;d rather have a real conversation than another evening scrolling. Because the
-              real magic happens when two people talk and no one expects anything from each other.
-            </p>
-            <ul className="mx-auto mt-10 grid max-w-2xl gap-4 text-left text-base text-foreground sm:grid-cols-2">
-              {whoBullets.map((line) => (
-                <li
-                  key={line}
-                  className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
-                >
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
+            <Founders />
+            <div className="mt-16 space-y-6 text-lg leading-8 text-foreground">
+              <p>
+                In the bustling heart of Melbourne, where coffee culture thrives, a new idea was
+                born. The Intro was conceived as a solution for those seeking meaningful connections
+                in the tech and creative industries.
+              </p>
+              <p>
+                Imagine receiving a carefully chosen introduction each week to someone intriguing,
+                someone who could inspire you or spark a new collaboration. This isn’t about swiping
+                through profiles or attending crowded events; it’s about one genuine conversation
+                over coffee, at a café of your choice.
+              </p>
+              <p>
+                The concept draws inspiration from the intimate atmosphere of Melbourne’s coffee
+                scene, where every cup is an opportunity for connection. As we prepare to launch,
+                we’re inviting a select group of curious minds to join our founding cohort. By
+                signing up, you’ll receive a personal introduction each week, curated by hand to
+                ensure a thoughtful match.
+              </p>
+              <p>
+                This is not just another app; it’s a community built on the belief that the best
+                conversations can change the course of a year. Join us as we redefine networking,
+                one coffee at a time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="flex min-h-screen items-center py-24 sm:py-32">
+          <div className="mx-auto w-full max-w-3xl px-6 sm:px-10">
+            <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+              Questions?
+            </h2>
+            <div className="mt-12 sm:mt-16">
+              <Faq />
+            </div>
+          </div>
+        </section>
+
+        <section id="cta" className="pt-24 pb-40 sm:pt-32 sm:pb-56">
+          <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-6 text-center sm:px-10">
+            <Image
+              src="/coffee-cup.png"
+              alt=""
+              width={180}
+              height={180}
+              className="h-auto w-[160px] drop-shadow-[4px_8px_20px_rgba(42,31,26,0.18)] sm:w-[200px]"
+            />
+            <h2 className="mt-10 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+              Ready for an intro?
+            </h2>
+            <div className="mt-10 flex flex-col items-center gap-4">
+              <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
+                Apply now
+              </a>
+              <p className="text-sm text-muted">Limited spots available for the May 2026 cohort.</p>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="hidden border-t border-border">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-6 py-8 text-sm text-muted sm:px-10">
-          <p>© {new Date().getFullYear()} The Intro.</p>
+      <footer className="border-t border-border">
+        <div className="mx-auto w-full max-w-5xl px-6 py-8 text-center text-sm text-muted sm:px-10">
+          © {new Date().getFullYear()} The Intro
         </div>
       </footer>
     </div>
