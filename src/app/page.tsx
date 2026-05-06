@@ -174,11 +174,10 @@ export default async function Home() {
 
         <section id="cta" className="pt-24 pb-40 sm:pt-32 sm:pb-56">
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-6 text-center sm:px-10">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/coffee-cup.png"
               alt=""
-              width={180}
-              height={180}
               className="h-auto w-[160px] drop-shadow-[4px_8px_20px_rgba(42,31,26,0.18)] sm:w-[200px]"
             />
             <h2 className="mt-10 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">

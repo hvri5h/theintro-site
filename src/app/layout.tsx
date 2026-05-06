@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = "https://theintro-site.vercel.app";
-const TITLE = "The Intro — Meet interesting people over coffee";
+const TITLE = "The Intro — Meet someone interesting over coffee";
 const DESCRIPTION =
   "One curated coffee intro a week to someone worth knowing in Melbourne's tech and creative scene.";
 
