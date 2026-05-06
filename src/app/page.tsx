@@ -162,7 +162,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="faq" className="flex min-h-screen items-center py-24 sm:py-32">
+        <section id="faq" className="flex min-h-screen items-center pt-24 pb-40 sm:pt-32 sm:pb-56">
           <div className="mx-auto w-full max-w-3xl px-6 sm:px-10">
             <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               Questions?
@@ -173,24 +173,26 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="cta" className="pt-24 pb-40 sm:pt-32 sm:pb-56">
+        <section id="cta" className="bg-foreground py-24 sm:py-32">
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-6 text-center sm:px-10">
-            <FloatingCup className="h-auto w-[160px] sm:w-[200px] sm:drop-shadow-[4px_8px_20px_rgba(42,31,26,0.18)]" />
-            <h2 className="mt-10 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+            <FloatingCup className="h-auto w-[160px] sm:w-[200px] sm:drop-shadow-[4px_8px_20px_rgba(0,0,0,0.35)]" />
+            <h2 className="mt-10 text-4xl font-extrabold tracking-tight text-background sm:text-5xl">
               Ready for an intro?
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4">
               <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
                 Apply now
               </a>
-              <p className="text-sm text-muted">Limited spots available for the May 2026 cohort.</p>
+              <p className="text-sm text-background/70">
+                Limited spots available for the May 2026 cohort.
+              </p>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border/40">
-        <div className="mx-auto w-full max-w-5xl px-6 py-8 text-center text-sm text-muted sm:px-10">
+      <footer className="bg-foreground">
+        <div className="mx-auto w-full max-w-5xl px-6 py-8 text-center text-sm text-background/60 sm:px-10">
           © {new Date().getFullYear()} The Intro
         </div>
       </footer>
