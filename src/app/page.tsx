@@ -77,7 +77,7 @@ export default async function Home() {
                   ))}
                 </ul>
                 <span className="text-xs font-medium tracking-wide text-muted">
-                  Next cohort filling fast.
+                  43/50 spots left
                 </span>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border">
+      <footer className="border-t border-border/40">
         <div className="mx-auto w-full max-w-5xl px-6 py-8 text-center text-sm text-muted sm:px-10">
           © {new Date().getFullYear()} The Intro
         </div>
