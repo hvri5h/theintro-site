@@ -2,6 +2,7 @@ import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import Image from "next/image";
 import { CupScatter } from "./cup-scatter";
+import { FloatingCup } from "./floating-cup";
 import { Founders } from "./founders";
 import { RotatingText } from "@/components/ui/rotating-text";
 import { Faq } from "@/components/ui/faq";
@@ -41,7 +42,7 @@ const STEP_ICONS = {
 type StepIconKey = keyof typeof STEP_ICONS;
 
 const CTA_CLASSNAME =
-  "inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[filter,box-shadow] duration-200 hover:brightness-95 hover:shadow-md";
+  "inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[opacity,box-shadow] duration-200 hover:opacity-90 hover:shadow-md";
 
 export default async function Home() {
   const avatars = await getAvatars();
@@ -61,7 +62,7 @@ export default async function Home() {
           <CupScatter />
           <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pt-[10vh] pb-12 text-center sm:pt-[14vh]">
             <div className="flex justify-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 py-1 pr-3 pl-1 shadow-sm backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/95 py-1 pr-3 pl-1 shadow-sm sm:bg-card/60 sm:backdrop-blur-sm">
                 <ul className="flex -space-x-1.5">
                   {avatars.map(({ name, version }) => (
                     <li key={name} className="overflow-hidden rounded-full ring-[1.5px] ring-card">
@@ -77,7 +78,7 @@ export default async function Home() {
                   ))}
                 </ul>
                 <span className="text-xs font-medium tracking-wide text-muted">
-                  43/50 spots left
+                  Cohort filling fast
                 </span>
               </div>
             </div>
@@ -174,12 +175,7 @@ export default async function Home() {
 
         <section id="cta" className="pt-24 pb-40 sm:pt-32 sm:pb-56">
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-6 text-center sm:px-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/coffee-cup.png"
-              alt=""
-              className="h-auto w-[160px] drop-shadow-[4px_8px_20px_rgba(42,31,26,0.18)] sm:w-[200px]"
-            />
+            <FloatingCup className="h-auto w-[160px] sm:w-[200px] sm:drop-shadow-[4px_8px_20px_rgba(42,31,26,0.18)]" />
             <h2 className="mt-10 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               Ready for an intro?
             </h2>

@@ -8,6 +8,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
+import { useMediaQuery } from "@/lib/use-media-query";
 
 const SCROLL_END = 900; // px — reference scroll distance; per-cup completion is staggered around this
 const X_EXIT_BASE = 350; // px — minimum horizontal travel toward nearest edge
@@ -96,7 +97,7 @@ function Cup({
         <div className="h-full w-full" style={{ transform: `rotate(${rot}deg)` }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/coffee-cup.png"
+            src="/coffee-cup.webp"
             alt=""
             className="h-full w-full"
             style={flip ? { transform: "scaleX(-1)" } : undefined}
@@ -112,25 +113,32 @@ function Cup({
   return (
     <div className={`absolute ${className}`}>
       <motion.div
-        style={{ x: xMv, y: yMv, rotate: rotateMv, opacity: opacityMv }}
+        style={{
+          x: xMv,
+          y: yMv,
+          rotate: rotateMv,
+          opacity: opacityMv,
+          willChange: "transform, opacity",
+          backfaceVisibility: "hidden",
+        }}
         className="h-full w-full"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
-          src="/coffee-cup.png"
+          src="/coffee-cup.webp"
           alt=""
           className="h-full w-full"
-          animate={{
+          whileInView={{
             y: [0, -floatAmp, 0, floatAmp * 0.6, 0],
             rotate: [0, 1.5, 0, -1.5, 0],
           }}
+          viewport={{ once: false, amount: 0 }}
           transition={{
             duration: floatDuration,
             repeat: Infinity,
             ease: "easeInOut",
             delay: floatDelay,
           }}
-          style={{ scaleX: flip ? -1 : 1 }}
+          style={{ scaleX: flip ? -1 : 1, willChange: "transform" }}
         />
       </motion.div>
     </div>
@@ -145,7 +153,9 @@ export function CupScatter() {
     mass: 0.5,
   });
   const reduce = useReducedMotion() ?? false;
-  const driver = reduce ? scrollY : smoothScrollY;
+  // Spring smoothing over 32 subscribers is the heaviest cost on mobile; use raw scrollY there.
+  const isSmall = useMediaQuery("(max-width: 640px)");
+  const driver = reduce || isSmall ? scrollY : smoothScrollY;
   return (
     <div
       aria-hidden
@@ -155,9 +165,7 @@ export function CupScatter() {
       {/* MOBILE — visible below 640px */}
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
 
-      {/* TOP — varied sizes */}
-      <Cup className="sm:hidden top-[5%]  left-[8%]  -translate-x-1/2 -translate-y-1/2 w-16 h-16 blur-[4px] opacity-40" rot={15}  parallax={0.5} floatAmp={3} index={0}  exit="left"  scrollY={driver} reduce={reduce} />
-      <Cup className="sm:hidden top-[10%] left-[78%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 blur-[4px] opacity-40" rot={22}  flip parallax={0.5} floatAmp={3} index={2}  exit="right" scrollY={driver} reduce={reduce} />
+      {/* TOP — sharp top edges */}
       <Cup className="sm:hidden top-0 left-[18%] -translate-x-1/2 w-14 h-14" rot={-12} parallax={1.0} floatAmp={7} index={3} exit="left"  scrollY={driver} reduce={reduce} />
       <Cup className="sm:hidden top-0 left-[82%] -translate-x-1/2 w-12 h-12" rot={10}  flip parallax={1.0} floatAmp={7} index={4} exit="right" scrollY={driver} reduce={reduce} />
 
@@ -165,9 +173,7 @@ export function CupScatter() {
       <Cup className="sm:hidden top-[42%] left-0    -translate-x-1/2 w-24 h-24 blur-[1px] opacity-90" rot={22}  parallax={1.0} floatAmp={5} index={5} exit="left"  scrollY={driver} reduce={reduce} />
       <Cup className="sm:hidden top-[55%] left-full -translate-x-1/2 w-16 h-16 blur-[1px] opacity-90" rot={-8}  flip parallax={1.0} floatAmp={5} index={6} exit="right" scrollY={driver} reduce={reduce} />
 
-      {/* BOTTOM — small + heavily blurred so they recede behind the CTA */}
-      <Cup className="sm:hidden bottom-[7%] left-[6%]  -translate-x-1/2 w-12 h-12 blur-[3px] opacity-50" rot={-15} parallax={0.6} floatAmp={3} index={8}  exit="left"  scrollY={driver} reduce={reduce} />
-      <Cup className="sm:hidden bottom-[5%] left-[92%] -translate-x-1/2 w-14 h-14 blur-[3px] opacity-50" rot={18}  flip parallax={0.6} floatAmp={3} index={9}  exit="right" scrollY={driver} reduce={reduce} />
+      {/* BOTTOM — sharp bottom edges */}
       <Cup className="sm:hidden bottom-0 left-[14%] -translate-x-1/2 w-10 h-10" rot={18}  parallax={1.0} floatAmp={4} index={10} exit="left"  scrollY={driver} reduce={reduce} />
       <Cup className="sm:hidden bottom-0 left-[86%] -translate-x-1/2 w-14 h-14" rot={-15} flip parallax={1.0} floatAmp={4} index={11} exit="right" scrollY={driver} reduce={reduce} />
 

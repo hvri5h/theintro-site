@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         pathname: "/founders/**",
       },
       {
-        pathname: "/coffee-cup.png",
+        pathname: "/coffee-cup.webp",
       },
     ],
   },

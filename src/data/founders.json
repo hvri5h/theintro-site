@@ -3,13 +3,13 @@
     {
       "name": "Aseem",
       "role": "Co-founder & Engineer",
-      "image": "/founders/aseem.png",
+      "image": "/founders/aseem.webp",
       "rotate": -2
     },
     {
       "name": "Harish",
       "role": "Co-founder & Designer",
-      "image": "/founders/harish.png",
+      "image": "/founders/harish.webp",
       "rotate": 2,
       "objectPosition": "73% 25.5%",
       "scale": 1.13
