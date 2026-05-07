@@ -3,7 +3,7 @@ import path from "node:path";
 import Image from "next/image";
 import { CupScatter } from "./cup-scatter";
 import { FloatingCup } from "./floating-cup";
-import { Founders } from "./founders";
+import { FounderCard } from "@/components/ui/founder-card";
 import { RotatingText } from "@/components/ui/rotating-text";
 import { Faq } from "@/components/ui/faq";
 import {
@@ -12,7 +12,6 @@ import {
   PiEnvelopeDefaultStroke,
 } from "@/components/icons/pikaicons";
 import intros from "@/data/intros.json";
-import stepsData from "@/data/steps.json";
 
 const AVATAR_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
 
@@ -32,14 +31,6 @@ async function getAvatars() {
     }),
   );
 }
-
-const STEP_ICONS = {
-  clipboard: PiClipboardTextStroke,
-  envelope: PiEnvelopeDefaultStroke,
-  coffee: PiCoffeeCup01Stroke,
-} as const;
-
-type StepIconKey = keyof typeof STEP_ICONS;
 
 const CTA_CLASSNAME =
   "inline-flex h-16 items-center justify-center rounded-full bg-accent px-10 text-base font-semibold text-accent-foreground shadow-sm transition-[opacity,box-shadow] duration-200 hover:opacity-90 hover:shadow-md";
@@ -112,18 +103,30 @@ export default async function Home() {
               How it works
             </h2>
             <ol className="mt-16 grid gap-12 sm:mt-20 sm:grid-cols-3 sm:gap-10">
-              {stepsData.steps.map((step, i) => {
-                const Icon = STEP_ICONS[step.icon as StepIconKey];
-                return (
-                  <li key={step.title} className="flex flex-col items-center text-center">
-                    <Icon aria-hidden className="h-16 w-16 text-foreground" />
-                    <h3 className="mt-8 text-2xl font-bold text-foreground">
-                      {i + 1}. {step.title}
-                    </h3>
-                    <p className="mt-4 max-w-xs text-base leading-7 text-muted">{step.body}</p>
-                  </li>
-                );
-              })}
+              <li className="flex flex-col items-center text-center">
+                <PiClipboardTextStroke aria-hidden className="h-16 w-16 text-foreground" />
+                <h3 className="mt-8 text-2xl font-bold text-foreground">1. Tell us about you</h3>
+                <p className="mt-4 max-w-xs text-base leading-7 text-muted">
+                  A few questions about you, what you're excited about, and the kind of person you'd
+                  love to meet.
+                </p>
+              </li>
+              <li className="flex flex-col items-center text-center">
+                <PiEnvelopeDefaultStroke aria-hidden className="h-16 w-16 text-foreground" />
+                <h3 className="mt-8 text-2xl font-bold text-foreground">2. Get an intro</h3>
+                <p className="mt-4 max-w-xs text-base leading-7 text-muted">
+                  We pick your match and send you an intro explaining why we think you two should
+                  meet.
+                </p>
+              </li>
+              <li className="flex flex-col items-center text-center">
+                <PiCoffeeCup01Stroke aria-hidden className="h-16 w-16 text-foreground" />
+                <h3 className="mt-8 text-2xl font-bold text-foreground">3. Meet for coffee</h3>
+                <p className="mt-4 max-w-xs text-base leading-7 text-muted">
+                  We pick a café, sort the time, and send a calendar invite. All you need to do is
+                  show up.
+                </p>
+              </li>
             </ol>
           </div>
         </section>
@@ -133,7 +136,22 @@ export default async function Home() {
             <h2 className="text-center text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               Why we made this
             </h2>
-            <Founders />
+            <div className="mt-16 flex flex-wrap items-start justify-center gap-8 sm:gap-12">
+              <FounderCard
+                name="Aseem"
+                role="Co-founder & Engineer"
+                image="/founders/aseem.webp"
+                rotate={-2}
+              />
+              <FounderCard
+                name="Harish"
+                role="Co-founder & Designer"
+                image="/founders/harish.webp"
+                rotate={2}
+                objectPosition="73% 25.5%"
+                scale={1.13}
+              />
+            </div>
             <div className="mt-16 space-y-6 text-lg leading-8 text-foreground">
               <p>
                 In the bustling heart of Melbourne, where coffee culture thrives, a new idea was
