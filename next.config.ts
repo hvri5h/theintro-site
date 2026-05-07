@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
       {
         pathname: "/avatars/**",
       },
+      {
+        pathname: "/founders/**",
+      },
+      {
+        pathname: "/coffee-cup.webp",
+      },
     ],
   },
 };
