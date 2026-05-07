@@ -1,17 +1,17 @@
-import { readdir, stat } from "node:fs/promises";
-import path from "node:path";
-import Image from "next/image";
-import { CupScatter } from "./cup-scatter";
-import { FloatingCup } from "./floating-cup";
-import { FounderCard } from "@/components/ui/founder-card";
-import { RotatingText } from "@/components/ui/rotating-text";
-import { Faq } from "@/components/ui/faq";
 import {
   PiClipboardTextStroke,
   PiCoffeeCup01Stroke,
   PiEnvelopeDefaultStroke,
 } from "@/components/icons/pikaicons";
+import { Faq } from "@/components/ui/faq";
+import { FounderCard } from "@/components/ui/founder-card";
+import { RotatingText } from "@/components/ui/rotating-text";
 import intros from "@/data/intros.json";
+import Image from "next/image";
+import { readdir, stat } from "node:fs/promises";
+import path from "node:path";
+import { CupScatter } from "./cup-scatter";
+import { FloatingCup } from "./floating-cup";
 
 const AVATAR_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif"]);
 
@@ -69,7 +69,7 @@ export default async function Home() {
                   ))}
                 </ul>
                 <span className="text-xs font-medium tracking-wide text-muted">
-                  Cohort filling fast
+                  Spots filling fast
                 </span>
               </div>
             </div>
@@ -90,9 +90,11 @@ export default async function Home() {
 
             <div className="mt-10 flex flex-col items-center gap-4">
               <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
-                Apply now
+                Get your first intro
               </a>
-              <p className="text-sm text-muted">Limited spots available for the May 2026 cohort.</p>
+              <p className="text-sm text-muted">
+                Takes 2mins · Free for the founding cohort (limited spots available)
+              </p>
             </div>
           </div>
         </section>
@@ -107,8 +109,8 @@ export default async function Home() {
                 <PiClipboardTextStroke aria-hidden className="h-16 w-16 text-foreground" />
                 <h3 className="mt-8 text-2xl font-bold text-foreground">1. Tell us about you</h3>
                 <p className="mt-4 max-w-xs text-base leading-7 text-muted">
-                  A few questions about you, what you're excited about, and the kind of person you'd
-                  love to meet.
+                  A few questions about you, what you&apos;re excited about, and the kind of person
+                  you&apos;d love to meet.
                 </p>
               </li>
               <li className="flex flex-col items-center text-center">
@@ -123,7 +125,7 @@ export default async function Home() {
                 <PiCoffeeCup01Stroke aria-hidden className="h-16 w-16 text-foreground" />
                 <h3 className="mt-8 text-2xl font-bold text-foreground">3. Meet for coffee</h3>
                 <p className="mt-4 max-w-xs text-base leading-7 text-muted">
-                  We pick a café, sort the time, and send a calendar invite. All you need to do is
+                  We suggest a café and day/time, and send a calendar invite. All you need to do is
                   show up.
                 </p>
               </li>
@@ -154,27 +156,41 @@ export default async function Home() {
             </div>
             <div className="mt-16 space-y-6 text-lg leading-8 text-foreground">
               <p>
-                In the bustling heart of Melbourne, where coffee culture thrives, a new idea was
-                born. The Intro was conceived as a solution for those seeking meaningful connections
-                in the tech and creative industries.
+                Honestly, we (selfishly) want this to exist! We want to meet the most interesting
+                people in Melbourne; because the energy from great conversations makes us feel
+                alive.
+              </p>
+              <p>The problem was the standard advice never worked for us.</p>
+              <p>
+                Networking events were usually loud, superficial and transactional. Reaching out
+                directly on something like LinkedIn meant risking being left on seen or rejected.
+                Even when we got past that, the logistics killed it. Picking a time, picking a
+                place, the back-and-forth, the rescheduling, the slow death of a coffee that never
+                quite happens. The friction is small but it&apos;s enough.
+              </p>
+              <p>We wanted meeting cool people to feel deep, energising and yet effortless.</p>
+              <p>
+                One person, one table, going deep enough that you both end up saying something you
+                didn&apos;t expect to say.
               </p>
               <p>
-                Imagine receiving a carefully chosen introduction each week to someone intriguing,
-                someone who could inspire you or spark a new collaboration. This isn’t about swiping
-                through profiles or attending crowded events; it’s about one genuine conversation
-                over coffee, at a café of your choice.
+                Meanwhile Melbourne is a city built for exactly the thing we wanted. Half of it is a
+                café. Walk through Fitzroy on a weekday morning and every second table has two
+                people leaned in talking. The venue was already there. The only missing piece was
+                the introduction and the logistics.
               </p>
               <p>
-                The concept draws inspiration from the intimate atmosphere of Melbourne’s coffee
-                scene, where every cup is an opportunity for connection. As we prepare to launch,
-                we’re inviting a select group of curious minds to join our founding cohort. By
-                signing up, you’ll receive a personal introduction each week, curated by hand to
-                ensure a thoughtful match.
+                So we built TheIntro! One stranger, one coffee, once a week, hand-matched. We pick
+                the person, the café, and the time. You just show up.
               </p>
               <p>
-                This is not just another app; it’s a community built on the belief that the best
-                conversations can change the course of a year. Join us as we redefine networking,
-                one coffee at a time.
+                If you&apos;ve also been wanting to meet the most interesting people in this city
+                without doing the parts that always made it hard, you&apos;ll fit right in.
+              </p>
+              <p>
+                Looking forward to grabbing coffee soon
+                <br />
+                <br />- Aseem and Harish
               </p>
             </div>
           </div>
@@ -199,10 +215,10 @@ export default async function Home() {
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4">
               <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
-                Apply now
+                Get your first intro
               </a>
               <p className="text-sm text-background/70">
-                Limited spots available for the May 2026 cohort.
+                Limited spots available for the founding cohort
               </p>
             </div>
           </div>

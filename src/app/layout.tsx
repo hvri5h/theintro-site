@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Figtree, Geist_Mono, Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import type { Metadata } from "next";
+import { Figtree, Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
 const geist = Geist({
   variable: "--font-sans",
@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://theintro-site.vercel.app";
-const TITLE = "The Intro — Meet someone interesting over coffee";
+const SITE_URL = "https://theintro.app";
+const TITLE = "The Intro - Meet someone interesting over coffee";
 const DESCRIPTION =
   "One curated coffee intro a week to someone worth knowing in Melbourne's tech and creative scene.";
 
@@ -85,7 +85,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geist.variable, figtree.variable, geistMono.variable, "font-sans")}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geist.variable,
+        figtree.variable,
+        geistMono.variable,
+        "font-sans",
+      )}
     >
       <body className="min-h-full flex flex-col">{children}</body>
       <GoogleAnalytics gaId="G-SD3VX9MZXQ" />

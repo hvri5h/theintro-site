@@ -1,12 +1,12 @@
 {
   "faqs": [
     {
-      "q": "Is this a dating app?",
-      "a": "No. The Intro is for platonic, professional, and creative connections — co-founders, collaborators, mentors, friends. If romance happens, that's between you and them."
+      "q": "How do you decide who to introduce me to?",
+      "a": "We hand-pick each match based on your profile. In the form you first fill out, you'll tell us your work, interests, energy, and what kind of person you'd find interesting this week."
     },
     {
-      "q": "How do you decide who to introduce me to?",
-      "a": "Each match is hand-picked by us based on your profile — your work, interests, energy, and what kind of person you'd find interesting this week."
+      "q": "Is this a dating app?",
+      "a": "No. The Intro is for platonic, professional, and creative connections - co-founders, collaborators, mentors, friends etc."
     },
     {
       "q": "Why is it Melbourne-only?",
@@ -14,11 +14,11 @@
     },
     {
       "q": "What does it cost?",
-      "a": "Founding cohort members pay nothing during the first season. Pricing for future cohorts will be announced before applications open."
+      "a": "Nothing for the founding cohort (while we have spots available)! We'll make pricing for future cohorts available soon."
     },
     {
       "q": "What if the person you send me isn't a good fit?",
-      "a": "Tell us. We learn from every signal and refine future matches. You can also pass on any week — see below."
+      "a": "Tell us! The goal is to make the best matches possible and we might not always get this right. Genuine connections are the goal and we learn from every piece of feedback.You can also pass on any week — see below."
     },
     {
       "q": "Can I pause or skip a week?",
@@ -27,10 +27,6 @@
     {
       "q": "Do you share my profile with anyone?",
       "a": "Only with the person we introduce you to that week, and only what's relevant. Your full profile is never published or browsable."
-    },
-    {
-      "q": "When does the founding cohort start?",
-      "a": "May 2026. Applications close once we hit 50 members."
     }
   ]
 }
