@@ -3,6 +3,7 @@ import {
   PiCoffeeCup01Stroke,
   PiEnvelopeDefaultStroke,
 } from "@/components/icons/pikaicons";
+import { CtaLink } from "@/components/ui/cta-link";
 import { Faq } from "@/components/ui/faq";
 import { FounderCard } from "@/components/ui/founder-card";
 import { RotatingText } from "@/components/ui/rotating-text";
@@ -89,9 +90,9 @@ export default async function Home() {
             </p>
 
             <div className="mt-10 flex flex-col items-center gap-4">
-              <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
+              <CtaLink href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME} section="hero">
                 Get your first intro
-              </a>
+              </CtaLink>
               <p className="text-sm text-muted">
                 Takes 2mins · Free for the founding cohort (limited spots available)
               </p>
@@ -214,9 +215,9 @@ export default async function Home() {
               Ready for an intro?
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4">
-              <a href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME}>
+              <CtaLink href="https://tally.so/r/1AGG8L" className={CTA_CLASSNAME} section="bottom_cta">
                 Get your first intro
-              </a>
+              </CtaLink>
               <p className="text-sm text-background/70">
                 Limited spots available for the founding cohort
               </p>

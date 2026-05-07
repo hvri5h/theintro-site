@@ -3,6 +3,7 @@
 import { Accordion } from "@base-ui/react/accordion";
 import { PiChevronDownStroke } from "@/components/icons/pikaicons";
 import faqsData from "@/data/faqs.json";
+import posthog from "posthog-js";
 
 export function Faq() {
   return (
@@ -14,7 +15,10 @@ export function Faq() {
           className="border-b border-border last:border-b-0"
         >
           <Accordion.Header className="m-0">
-            <Accordion.Trigger className="group flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-bold text-foreground outline-none transition-colors sm:text-xl">
+            <Accordion.Trigger
+              className="group flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-bold text-foreground outline-none transition-colors sm:text-xl"
+              onClick={() => posthog.capture("faq_item_opened", { question: faq.q, index: i })}
+            >
               <span>{faq.q}</span>
               <PiChevronDownStroke
                 aria-hidden
